@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ES_master</title>
+  <!-- スタイルシートを読み込む -->
+  <link  rel="stylesheet"  href="p.css">
+</head>
+<body onload="load()" id="bodyback">
+<!-- タブ　-->
+<ul class="tab-list">
+    <li class="tab-list-item active">
+      <div class="edit icon"></div>
+      文章作成</li>
+    <li class="tab-list-item">
+      <div class="heart icon"></div>
+      保存</li>
+    <li class="tab-list-item">
+      <div class="clock-solid icon">
+      </div>
+        時間計測
+      </li>
+  </ul>
+  
+  <!-- タブコンテンツ 　-->
+  <div class="tab-contents">
+    <div class="tab-contents-item show">
+      <div class="wrapper" id="wrapper">
+
+      
+        <input type="button" id="changeColor" value="backgroucd-color" onclick="changeColor(0)">
+        <br><br><br><br>
+
+        <div class="item">
+          <div id="output" class="item" ></div>
+    <textarea id="input" oninput="updateProgressBar() , updateProgressBarThird() , updateProgressBarFourth() , updateChart()"></textarea>
+    <button id="kopi" onClick="copy()">コピー</button>
+    <br>
+    
+    <div class="wordcount">
+        <div>現在</div>
+        <div class="length">0</div>
+        <div>文字</div>
+    </div>
+    
+    <!-- <button  id="reset"   onclick="func1()" >クリア</button> -->
+    
+</div>
+
+<br>
+<div class="box200">
+    <button id="nihyaku"><b>200</b>文字制限</button>
+    <progress id="progressBar" value="0" max="200"></progress> 
+    <p id="parsent"></p>
+</div>
+
+<div class="box200">
+<button id="sanbyaku"><b>300</b>文字制限</button>
+<progress id="progressBarThird" value="0" max="300"></progress>
+<p id="parsent300"></p>
+</div>
+
+
+<div class="box200">
+<button id="yonhyaku"><b>400</b>文字制限</button>
+<progress id="updateProgressBarFourth" value="0" max="400"></progress>
+<p id="parsent400"></p>
+</div>
+
+
+
+
+<!-- <div id="output" class="item" ></div> -->
+    </div>
+    </div>
+      <div class="tab-contents-item">
+        <div class="wrapper2">
+        <div class="textCon">
+          <div>
+          <button id="add" onclick=" addTextArea()" >＋テキストエリア追加</button>
+          </div>
+            <br>
+            
+            <div id="textareaContainer">
+              <!-- 既存のテキストエリアがここに表示されます -->
+            </div>
+            <button id="hozo" onclick=" saveText()" >保存</button>
+          <br><br>
+        </div>
+          </div>
+        </div>
+      <div class="tab-contents-item">
+
+        <div class="aisatu"><p><span id="greeting">ここにあいさつを表示します</span></p></div>
+
+        <div class="timer">
+          <div class="display_none">
+              <div class="container">
+                  <div class="timer-display">
+                      00 : 00 : 00 : 000
+                  </div>
+                  <div class="buttons">
+                      <button id="start-timer">Start</button>
+                      <button id="pause-timer">Pause</button>
+                      <button id="reset-timer">Reset</button>
+                  </div>
+              </div>
+            </div>
+          </div>
+        </div>
+    </div>
+  <!-- スクリプトを読み込む -->
+  <script src="p.js"></script>
+</body>
+</html>
