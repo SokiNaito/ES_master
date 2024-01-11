@@ -2,25 +2,16 @@ const tabList = document.querySelectorAll('.tab-list-item');
 // タブコンテンツ
 const tabContent = document.querySelectorAll('.tab-contents-item');
 
-//DOMが読み込み終わったら
 document.addEventListener('DOMContentLoaded', function(){
-  // タブに対してクリックイベントを適用
   for(let i = 0; i < tabList.length; i++) {
     tabList[i].addEventListener('click', tabSwitch);
   }
-  // タブをクリックすると実行する関数
   function tabSwitch(){
-    // activeクラスを削除
     document.querySelectorAll('.active')[0].classList.remove('active');
-    // クリックしたタブにactiveクラスを付与    
     this.classList.add('active');
-    // showクラスを削除
     document.querySelectorAll('.show')[0].classList.remove('show');
-    // タブを配列風オブジェクトとして定義
     const aryTabs = Array.prototype.slice.call(tabList);
-    // クリックしたタブの配列番号を取得     
     const index = aryTabs.indexOf(this);
-    // クリックしたタブと同じ配列番号のタブコンテンツにshowクラスを付与    
     tabContent[index].classList.add('show');
   };
 });
@@ -31,29 +22,20 @@ window.addEventListener('DOMContentLoaded', function() {
   const button = document.getElementById("changeColor");
   const wrapper = document.getElementById("bodyback");
 const colors = [
-  "#dee9fff8",
-  "#d8bfd8",
-  "#fff8dc",
-  "#e0ffff",
-  "#add8e6",
-  "#fff0f5",
-  "#dcdcdc",
-  "#b0c4de"
+  "#CCCCFF",
+  "#C0C0C0",
+  "#E6FFE9",
+  "#ADD8E6"
 ];
 
 button.addEventListener("click", () => {
   wrapper.style.background = colors[Math.floor(Math.random() * colors.length)];
 });
 
-
-  
-
-
 //-----------ストップウォッチ------------//
 let [milliseconds, seconds, minutes, hours] = [0, 0, 0, 0];
 let timeRef = document.querySelector(".timer-display");
 let int = null;
-
 
 document.getElementById("start-timer").addEventListener('click', () => {
     if(int !== null){
@@ -276,8 +258,6 @@ function addTextArea() {
   deleteButton.onclick = function() {
     wrapper.remove();
   };
- 
-
   wrapper.appendChild(textarea);
   wrapper.appendChild(deleteButton);
   textareaContainer.appendChild(wrapper);
@@ -288,15 +268,13 @@ function addTextArea() {
 
 // テキストを保存する関数
 function saveText() {
-
   let textareaWrappers = document.querySelectorAll('.textarea-wrapper');
-  let texts = [];
 
+  let texts = [];
   textareaWrappers.forEach(function(wrapper) {
     let textarea = wrapper.querySelector('textarea');
     texts.push(textarea.value);
   });
-
   // ローカルストレージに保存
   localStorage.setItem('savedTexts', JSON.stringify(texts));
   alert('テキストが保存されました！');
@@ -304,18 +282,15 @@ function saveText() {
 
 // 保存されたテキストを読み込む関数
 function loadSavedText() {
-  
-
-  //let textareaContainer = document.getElementById('textareaContainer');
   let savedTexts = localStorage.getItem('savedTexts');
-
   if (savedTexts) {
     savedTexts = JSON.parse(savedTexts);
 
     savedTexts.forEach(function(text) {
       addTextAreaWithText(text);
     });
-}};
+}
+};
 
 
 // テキストを指定してテキストエリアを追加する関数
@@ -347,12 +322,12 @@ function addTextAreaWithText(text) {
 
 const hour = new Date().getHours();
 //朝4時〜10時59分まで
-if(hour >= 4　&& hour < 11){
-document.getElementById('greeting').textContent ="朝寝は時間の出費である。しかも、これほど高価な出費は他にない （by カーネギー）";
+if(hour >= 4 && hour < 11){
+document.getElementById('greeting').textContent ="できると思えばできる、できないと思えばできない。これは、ゆるぎない絶対的な法則である。（by パブロ・ピカソ）";
 //昼１１時〜1６時59分まで
 }else if(hour >=11 && hour <17){
 document.getElementById('greeting').textContent ="今から数年後、あなたはやったことよりも、やらなかったことに失望する。 (by マーク・トウェイン)";
 //夜18時〜3時59分まで
 }else{
-document.getElementById('greeting').textContent ="同じ時間に寝て、同じ時間に起きることは、良い睡眠を得るために必要不可欠である。(byハワード・バネス)";
+document.getElementById('greeting').textContent ='時間は限られているのだから、他人の真似事をして、自分の時間を無駄に過ごしてはいけない \n (byスティーブ・ジョブス)';
 }
