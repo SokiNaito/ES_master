@@ -1,5 +1,5 @@
 const tabList = document.querySelectorAll('.tab-list-item');
-// タブコンテンツ
+
 const tabContent = document.querySelectorAll('.tab-contents-item');
 
 document.addEventListener('DOMContentLoaded', function(){
@@ -16,16 +16,25 @@ document.addEventListener('DOMContentLoaded', function(){
   };
 });
 
+function showClock() {
+  let nowTime = new Date();
+  let nowHour = nowTime.getHours();
+  let nowMin  = nowTime.getMinutes();
+  let msg = "現在時刻：" + nowHour + "時" + nowMin + "分";
+  document.getElementById("realtime").innerHTML = msg;
+}
+setInterval('showClock()',1000);
+
 //----------------------------------//
 window.addEventListener('DOMContentLoaded', function() {
 
   const button = document.getElementById("changeColor");
   const wrapper = document.getElementById("bodyback");
 const colors = [
-  "#CCCCFF",
-  "#C0C0C0",
-  "#E6FFE9",
-  "#ADD8E6"
+  "#CEF9DC",
+  "#FFEBCD",
+  "#F5F5DC",
+  "#B0C4DE"
 ];
 
 button.addEventListener("click", () => {
@@ -67,9 +76,7 @@ function displayTimer () {
     if(minutes == 60){
         minutes = 0;
         hours++;
-    }
-}
-    }
+  }}};
 let h = hours < 10 ? "0" + hours : hours;
 let m = minutes < 10 ? "0" + minutes : minutes;
 let s = seconds < 10 ? "0" + seconds : seconds;
@@ -88,7 +95,11 @@ timeRef.innerHTML = `${h} : ${m} : ${s} : ${ms}`;
   //テキストエリアに入力された文字数をリアルタイムでカウント
   textArea.addEventListener('input' , () => {
     length.textContent = textArea.value.length;
+    if(textArea.value.length === 0){
+      document.querySelector('#output').innerHTML = '';
+    }
   }, false);
+  
   
   //200文字制限ボタン
   document.querySelector('#nihyaku').addEventListener('click', function(){
@@ -111,7 +122,7 @@ timeRef.innerHTML = `${h} : ${m} : ${s} : ${ms}`;
           res = `あと<span style="color:red";><b>${len2}</b></span>文字入力できます。スペースが<span style="color:red";>${space}</span>文字含まれています。`;
       }else if(wordCount <= max){
        res =  `あと<span style="color:red";><b>${len2}</b></span>文字入力できます。`;
-      } else if(wordCount > max){
+      }else if(wordCount > max){
           res = `<span style="color:red";><b>${len}</b>文字オーバーしています。</span>`;
       }
       document.querySelector('#output').innerHTML = res;
@@ -138,7 +149,7 @@ timeRef.innerHTML = `${h} : ${m} : ${s} : ${ms}`;
         res = `あと<span style="color:red";><b>${len2}</b></span>文字入力できます。スペースが<span style="color:red";>${space}</span>文字含まれています。`;
     }else if(wordCount <= max){
      res =  `あと<span style="color:red";><b>${len2}</b></span>文字入力できます。`;
-    } else if(wordCount > max){
+    }else if(wordCount > max){
         res = `<span style="color:red";><b>${len}</b>文字オーバーしています。</span>`;
     }
       document.querySelector('#output').innerHTML = res;
@@ -180,6 +191,21 @@ const copy = () => {
   alert("コピーしました！");
 };
 
+let length = document.getElementById("length")  
+function clearTextarea() {
+  if(window.confirm('本当にクリアしますか？')) {
+    let textareaForm = document.getElementById("input");
+    textareaForm.value = '';
+    document.querySelector('#output').innerHTML = '';
+    document.querySelector('#length').innerHTML = 0;
+    document.querySelector('#parsent').innerHTML = '';
+    document.querySelector('#parsent300').innerHTML = '';
+    document.querySelector('#parsent400').innerHTML = '';
+     progressBar.value = '0' ;
+     progressBarThird.value = '0' ;
+     ProgressBarFourth.value = '0' ;
+}else{
+}}
 
 //200文字バー
 function updateProgressBar() {
@@ -195,10 +221,9 @@ function updateProgressBar() {
       progressBar.style.backgroundColor = 'red';
     }else {
       progressBar.style.backgroundColor = '';  // Reset the color
-    }
+     }
     document.querySelector('#parsent').innerHTML = `${percentage2}%`;
 };
-
 
 
 //300文字バー
@@ -223,17 +248,17 @@ function updateProgressBarThird() {
 //400文字バー
 function updateProgressBarFourth() {
   const textArea = document.getElementById('input').value;
-  const updateProgressBarFourth = document.getElementById('updateProgressBarFourth');
+  const ProgressBarFourth = document.getElementById('ProgressBarFourth');
 
   const maxLength = 400;
   const percentage = (textArea.length / maxLength) * 400;
   const percentage4 = Math.floor((textArea.length / maxLength) * 100);
-  updateProgressBarFourth.value = percentage;
+  ProgressBarFourth.value = percentage;
 
   if (textArea.length > maxLength) {
-      updateProgressBarFourth.style.backgroundColor = 'red';
+     ProgressBarFourth.style.backgroundColor = 'red';
     }else {
-      updateProgressBarFourth.style.backgroundColor = '';  // Reset the color
+      ProgressBarFourth.style.backgroundColor = '';  // Reset the color
     }
     document.querySelector('#parsent400').innerHTML = `${percentage4}%`;
 };
@@ -253,7 +278,7 @@ function addTextArea() {
   let textarea = document.createElement('textarea');
 
   let deleteButton = document.createElement('button');
-  deleteButton.textContent = '削除';
+  deleteButton.textContent = '✖削除';
   deleteButton.className = 'delete-button';
   deleteButton.onclick = function() {
     wrapper.remove();
@@ -263,13 +288,9 @@ function addTextArea() {
   textareaContainer.appendChild(wrapper);
 };
 
-
-
-
 // テキストを保存する関数
 function saveText() {
   let textareaWrappers = document.querySelectorAll('.textarea-wrapper');
-
   let texts = [];
   textareaWrappers.forEach(function(wrapper) {
     let textarea = wrapper.querySelector('textarea');
@@ -277,7 +298,7 @@ function saveText() {
   });
   // ローカルストレージに保存
   localStorage.setItem('savedTexts', JSON.stringify(texts));
-  alert('テキストが保存されました！');
+  alert('保存されました！');
 };
 
 // 保存されたテキストを読み込む関数
@@ -292,7 +313,6 @@ function loadSavedText() {
 }
 };
 
-
 // テキストを指定してテキストエリアを追加する関数
 function addTextAreaWithText(text) {
   let textareaContainer = document.getElementById('textareaContainer');
@@ -303,31 +323,38 @@ function addTextAreaWithText(text) {
   textarea.value = text;
 
   let deleteButton = document.createElement('button');
-  deleteButton.textContent = '削除';
+  deleteButton.textContent = '✖削除';
   deleteButton.className = 'delete-button';
   deleteButton.onclick = function() {
-    
     if(window.confirm('本当に削除しますか？')) {
       wrapper.remove();
   }else{
-      window.alert('削除されませんでした'); 
+      // window.alert('削除されませんでした'); 
   }};
-
   wrapper.appendChild(textarea);
   wrapper.appendChild(deleteButton);
   textareaContainer.appendChild(wrapper);
-
 }
 
+window.addEventListener('DOMContentLoaded', function() {
+  const buttonM = document.getElementById("changeMessage");
+const messages = [
+  "できると思えばできる、できないと思えばできない。これは、ゆるぎない絶対的な法則である。（by パブロ・ピカソ）",
+  "今から数年後、あなたはやったことよりも、やらなかったことに失望する。    (by マーク・トウェイン)",
+  "時間は限られているのだから、他人の真似事をして、自分の時間を無駄に過ごしてはいけない(byスティーブ・ジョブス)",
+  "人間にとって成功とはいったいなんだろう。結局のところ、自分の夢に向かって自分がどれだけ挑んだか、努力したかどうか、ではないだろうか。(by岡本太郎)",
+  "打ちのめされる前に僕ら打ちのめしてやろう（by真島昌利）",
+  "ゴールへ到達しようとの試みにこそ、栄光はある。(byガンジー)",
+  "空虚な目標であれ、目標をめざして努力する過程にしか人間の幸福は存在しない。(by三島由紀夫)",
+  "人生は自分の思い通りになんかならないと思っている人は、自らが思い通りにならないことを望んでいる人です。(byジョセフ・マーフィー)",
+  "人を信じよ、しかし、その百倍も自らを信じよ。(by手塚治虫)",
+  "最も高い目標を達成するには、一歩一歩進むしかないという事実を、頭に入れておかなければならない。(byアンドリュー・カーネギー)",
+  "力や知性ではなく、地道な努力こそが能力を解き放つ鍵である。(byウィンストン・チャーチル)"
+];
 
-const hour = new Date().getHours();
-//朝4時〜10時59分まで
-if(hour >= 4 && hour < 11){
-document.getElementById('greeting').textContent ="できると思えばできる、できないと思えばできない。これは、ゆるぎない絶対的な法則である。（by パブロ・ピカソ）";
-//昼１１時〜1６時59分まで
-}else if(hour >=11 && hour <17){
-document.getElementById('greeting').textContent ="今から数年後、あなたはやったことよりも、やらなかったことに失望する。 (by マーク・トウェイン)";
-//夜18時〜3時59分まで
-}else{
-document.getElementById('greeting').textContent ='時間は限られているのだから、他人の真似事をして、自分の時間を無駄に過ごしてはいけない \n (byスティーブ・ジョブス)';
-}
+buttonM.addEventListener("click", () => {
+  mes= messages[Math.floor(Math.random() * messages.length)];
+  console.log(mes);
+  document.querySelector('#greeting').innerHTML = mes;
+});
+});
