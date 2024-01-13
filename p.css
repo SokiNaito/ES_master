@@ -14,7 +14,7 @@
   }
   .tab-list-item {
     text-align: center;
-    flex: 0 0 33.33333%;
+    flex: 0.25%;
     background-color: #e8e8e8;
     padding: 10px 0;
     cursor: pointer;
@@ -23,7 +23,6 @@
     background-color: #adb5b7;
   }
   .tab-list-item:hover{
-    /* text-decoration:underline; */
     color: #8b8989;
   }
   .tab-contents-item {
@@ -36,7 +35,7 @@
   .edit.icon {
     color: #000000;
     position: absolute;
-    margin-left: 12%;
+    margin-left: 8%;
     margin-top: 7px;
     width: 14px;
     height: 2px;
@@ -45,7 +44,6 @@
     -webkit-transform: rotate(-45deg);
             transform: rotate(-45deg);
   }
-  
   
   .edit.icon:before {
     content: '';
@@ -59,14 +57,12 @@
     border-top: solid 2px transparent;
     border-bottom: solid 2px transparent;
   }
-  
-  
 
   .heart.icon {
     color: #000000;
     position: absolute;
     margin-top: 6px;
-    margin-left: 12%;
+    margin-left: 9%;
     width: 9px;
     height: 9px;
     border-left: solid 1px currentColor;
@@ -101,14 +97,10 @@
     border-bottom: solid 1px currentColor;
   }
   
-  
-  
-
-
   .clock-solid.icon {
     color: #000;
     position: absolute;
-    margin-left: 12%;
+    margin-left: 8%;
     margin-top: 2px;
     width: 15px;
     height: 15px;
@@ -142,13 +134,59 @@
     -webkit-transform-origin: 0% 0%;
             transform-origin: 0% 0%;
   }
+
+  .smile.icon {
+    color: #000;
+    position: absolute;
+    margin-left: 9%;
+    margin-top: 2px;
+    width: 16px;
+    height: 16px;
+    border-radius: 50%;
+    border: solid 1px currentColor;
+  }
+  
+  .smile.icon:before {
+    content: '';
+    position: absolute;
+    left: 3px;
+    top: 3px;
+    width: 2px;
+    height: 2px;
+    border-radius: 50%;
+    border: solid 1px currentColor;
+  }
+  
+  .smile.icon:after {
+    content: '';
+    position: absolute;
+    right: 3px;
+    top: 3px;
+    width: 2px;
+    height: 2px;
+    border-radius: 50%;
+    border: solid 1px currentColor;
+  }
+  
+  .smile.icon i {
+    
+    position: absolute;
+    left: 3px;
+    top: 3px;
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    border-top: solid 1px transparent;
+    border-bottom: solid 1px currentColor;
+    border-left: solid 1px transparent;
+    border-right: solid 1px transparent;
+  }
   
   
-
-
-
+  
+  
 body{
-    background-color: #d8c8b9ec;
+    background-color: #dde0e0da;
 }
 
 .wrapper,
@@ -157,7 +195,6 @@ body{
     text-align: center;
     max-width: 100%;
     max-height:max-content;
-    /* max-height: 120%; */
     margin: 0 auto;
     margin-bottom: auto;
 }
@@ -166,6 +203,12 @@ body{
     font-size: 40px;
     color: #50535f;
     text-shadow: #fff 2px 0, #fff -2px 0, #fff 0 -2px, #fff 0 2px, #fff 2px 2px, #fff -2px 2px, #fff 2px -2px, #fff -2px -2px, #fff 1px 2px, #fff -1px 2px, #fff 1px -2px, #fff -1px -2px, #fff 2px 1px, #fff -2px 1px, #fff 2px -1px, #fff -2px -1px, rgba(0, 0, 0, .5) 3px 3px 3px;
+}
+
+.jikoku{
+    float: left;
+    margin-left: 10px;
+    margin-top: 10px;
 }
 
 #changeColor{
@@ -189,6 +232,8 @@ body{
 
 .wordcount{
     font-size: 20px;
+    font-weight: bold;
+    margin-top: 20px;
 }
 
 .item{
@@ -295,8 +340,7 @@ button {
     border: 1px solid #999;
     box-sizing: border-box;
     background: #ffffff;
-    margin: 0.5em 0;
-    margin-left: 50px;
+    margin: 1em 0;
 }
 
 .box200{
@@ -307,19 +351,18 @@ button {
 
 #progressBar{
     margin-top: 18px;
-    
 }
 
   
 #progressBarThird{
     margin-top: 18px;
 }
-#updateProgressBarFourth{
+#ProgressBarFourth{
     margin-top: 18px;
 }
 
 #nihyaku{
-    height:50px;
+    height:55px;
 	line-height:30px;
 	width:100px;
 	text-align:center;
@@ -337,7 +380,7 @@ button {
 
 
 #sanbyaku{
-    height:50px;
+    height:55px;
 	line-height:30px;
 	width:100px;
 	text-align:center;
@@ -355,7 +398,7 @@ button {
 
 
 #yonhyaku{
-    height:50px;
+    height:55px;
 	line-height:30px;
 	width:100px;
 	text-align:center;
@@ -382,9 +425,10 @@ button {
    background-color: rgb(213, 234, 178);
    box-shadow: 0px 0px 18px -5px #777777;
     transition: all 0.3s;
-    background-color: #ffb2c5;
+    background-color: #e2d3d6;
     cursor:pointer;
     margin-bottom: 20px;
+    border: 2px solid #afa1a1;
 }
 #kopi:hover{
     opacity:0.8;
@@ -392,7 +436,22 @@ button {
     box-shadow: none;
 }
 
-
+#cleartxt{
+    border-radius: 20%;
+    width: 60px;
+    height: 40px;
+   background-color: rgb(213, 234, 178);
+   box-shadow: 0px 0px 18px -5px #777777;
+    transition: all 0.3s;
+    background-color: #e894a9;
+    cursor:pointer;
+    border: 2px solid #e45e5e;
+}
+#cleartxt:hover{
+    opacity:0.8;
+    transform: translateY(5px);
+    box-shadow: none;
+}
 
 
 
@@ -443,7 +502,6 @@ margin-bottom: 5px;
     background-color:rgb(208, 233, 255);
 }
 
-
 .hozon{
     background-color: rgb(184, 184, 184);
 }
@@ -455,9 +513,7 @@ margin-bottom: 5px;
 
 .wordcount div {
     display: inline-block;
-    margin-right: 5px; 
   }
-
 
   .title{
     font-weight: bold;
@@ -516,7 +572,6 @@ margin-bottom: 5px;
     }
 }
   
-
 textarea {
     resize: none; 
     height: 170px; 
@@ -524,9 +579,7 @@ textarea {
     margin: 30px;
     text-align: center;
     box-shadow: 0px 0px 18px -5px #777777;
-
-
-  }
+}
 
 #textareaContainer{
     margin-left: 60px;
@@ -537,7 +590,7 @@ textarea {
     border: 2px solid #b6b6b6;
     background-color: #eeeeee;
     height: 40px;
-    border-radius: 10%;
+    border-radius: 5%;
     box-shadow: 0px 0px 18px -5px #777777;
     cursor: pointer;
     transition: all 0.3s;
@@ -589,15 +642,32 @@ textarea {
 .textareaContainer{
     width: 60%;
 }
-.titleInput{
+
+#changeMessage{
     text-align: center;
-    width: 30%;
+    margin-top: 8%;
+    margin-left: 50%;
+    margin-right: 50%;
+    width: 60px;
+    height: 40px;
+    box-shadow: 0px 0px 18px -5px #777777;
+    cursor: pointer;
+    transition: all 0.3s;
+    border: 2px solid #d5c8c8;
+    background-color: #ecd687;
+}
+#changeMessage:hover{
+    opacity: 0.8;
+    transform: translateY(5px);
+    box-shadow: none;
 }
 
 .aisatu{
-    margin-top: 5%;
+    margin-left: 10%; 
+     margin-right: 10%;
+    margin-top: 8%;
     text-align: center;
-    font-size: 25px;
+    font-size: 30px;
     font-weight: 100;
     font-family:'Times New Roman', Times, serif;
 }
