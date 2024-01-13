@@ -9,7 +9,6 @@
   <link  rel="stylesheet"  href="p.css">
 </head>
 <body onload="load()" id="bodyback">
-<!-- タブ　-->
 <ul class="tab-list">
     <li class="tab-list-item active">
       <div class="edit icon"></div>
@@ -18,37 +17,36 @@
       <div class="heart icon"></div>
       保存</li>
     <li class="tab-list-item">
-      <div class="clock-solid icon">
-      </div>
+      <div class="clock-solid icon"></div>
         時間計測
       </li>
+      <li class="tab-list-item">
+        <div class="smile icon"><i></i></div>
+        格言</li>
   </ul>
-  
-  <!-- タブコンテンツ 　-->
   <div class="tab-contents">
     <div class="tab-contents-item show">
       <div class="wrapper" id="wrapper">
 
-      
+        <div class="jikoku">
+          <p id="realtime"></p>
+       </div>
         <input type="button" id="changeColor" value="背景色" onclick="changeColor(0)">
-        <br><br><br><br>
+        <br><br><br>
 
         <div class="item">
           <div id="output" class="item" ></div>
     <textarea id="input" oninput="updateProgressBar() , updateProgressBarThird() , updateProgressBarFourth() , updateChart()"></textarea>
-    <button id="kopi" onClick="copy()">コピー</button>
     <br>
-    
+    <button id="kopi" onClick="copy()">コピー</button>
+    <input type="button"  value="クリア" id="cleartxt" onclick="clearTextarea()" />
+    <br>
     <div class="wordcount">
         <div>現在</div>
-        <div class="length">0</div>
+        <div class="length" id="length">0</div>
         <div>文字</div>
     </div>
-    
-    <!-- <button  id="reset"   onclick="func1()" >クリア</button> -->
-    
 </div>
-
 <br>
 <div class="box200">
     <button id="nihyaku"><b>200</b>文字制限</button>
@@ -62,17 +60,12 @@
 <p id="parsent300"></p>
 </div>
 
-
 <div class="box200">
 <button id="yonhyaku"><b>400</b>文字制限</button>
-<progress id="updateProgressBarFourth" value="0" max="400"></progress>
+<progress id="ProgressBarFourth" value="0" max="400"></progress>
 <p id="parsent400"></p>
 </div>
 
-
-
-
-<!-- <div id="output" class="item" ></div> -->
     </div>
     </div>
       <div class="tab-contents-item">
@@ -92,9 +85,6 @@
           </div>
         </div>
       <div class="tab-contents-item">
-
-        <div class="aisatu"><p><span id="greeting">ここにあいさつを表示します</span></p></div>
-
         <div class="timer">
           <div class="display_none">
               <div class="container">
@@ -105,10 +95,14 @@
                       <button id="start-timer">Start</button>
                       <button id="pause-timer">Pause</button>
                       <button id="reset-timer">Reset</button>
-                  </div>
+                    </div>
               </div>
             </div>
           </div>
+        </div>
+        <div class="tab-contents-item">
+          <input type="button" id="changeMessage" value="Click" onclick="changeMessage(0)">
+          <div class="aisatu"><p><span id="greeting"></span></p></div>
         </div>
     </div>
   <!-- スクリプトを読み込む -->
